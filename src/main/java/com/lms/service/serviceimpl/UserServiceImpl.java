@@ -1,7 +1,7 @@
 package com.lms.service.serviceimpl;
 
 import com.lms.dto.CustomResponse;
-import com.lms.dto.request.UserRequestDTO;
+import com.lms.dto.UserDTO;
 import com.lms.entity.User;
 import com.lms.repository.UserRepository;
 import com.lms.service.UserService;
@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public CustomResponse getAllUsers(UserRequestDTO userRequestDTO) {
+    public CustomResponse getAllUsers(UserDTO userRequestDTO) {
 //        return userRepository.findAllUsers();
         Long userId=userRequestDTO.getId();
         if(userId!=null){

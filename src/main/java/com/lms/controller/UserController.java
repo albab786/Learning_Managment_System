@@ -1,7 +1,7 @@
 package com.lms.controller;
 
-import com.lms.dto.request.UserAddressRequestDTO;
-import com.lms.dto.request.UserRequestDTO;
+import com.lms.dto.CustomResponse;
+import com.lms.dto.UserDTO;
 import com.lms.entity.User;
 import com.lms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,16 +14,17 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
     @GetMapping("getAllDetails")
-    public List<User> getAllUsers(@RequestBody UserRequestDTO userRequestDTO){
-        return  userService.getAllUsers(userRequestDTO);
+    public CustomResponse getAllUsers(@RequestBody UserDTO userDto){
+        return  userService.getAllUsers(userDto);
 
     }
 
-//    @GetMapping("/{id}")
-//    public User getUserById(@PathVariable Long id){
-//     return userService.getUserById(id);
-//    }
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable Long id){
+     return userService.getUserById(id);
+    }
 
     @PostMapping
     public User createUser(@RequestBody User user) {
