@@ -37,5 +37,18 @@ public class CourseServiceImpl implements CourseService {
         }
       return   new CustomResponse(courseRepository.findAll(), HttpStatus.OK.getReasonPhrase(),HttpStatus.OK.value());
     }
+    @Override
+    public ApiResponse updateDetails(Long id, CourseDTO course) {
+        Course existingCourse = courseRepository.findById(id).orElse(null);
+        if (existingCourse != null) {
+            existingCourse.setCourse_title(course.getCourse_title());
+            existingCourse.setCourse_information(course.getCourse_information());
+            existingCourse.setCourse_category(course.getCourse_category());
+            courseRepository.save(existingCourse);
+            return new ApiResponse(Constant.CREATED_MSG, Constant.SUCCESS_CODE, Constant.STATUS_MSG);
+        } else {
+            return new ApiResponse(Constant.FAILURE_CODE, Constant.FAILURE_CODE, Constant.STATUS_MSG);
+        }
+    }
 
 }

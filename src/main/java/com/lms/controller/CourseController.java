@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("course")
+@RequestMapping("api/course")
 public class CourseController {
     @Autowired
     private CourseService courseService;
@@ -28,6 +28,11 @@ public class CourseController {
     public CustomResponse getAllCourses(@RequestBody CourseDTO course) {
 
         return courseService.getAllDetails(course);
+    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiResponse> updateCourse(@PathVariable Long id, @RequestBody CourseDTO course) {
+        ApiResponse response = courseService.updateDetails(id, course);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 

@@ -10,4 +10,8 @@ public interface CourseService {
     ApiResponse addDetails(CourseDTO course);
 
     CustomResponse getAllDetails(CourseDTO course);
+
+    ApiResponse updateDetails(Long id, CourseDTO course);
+
+
 }
